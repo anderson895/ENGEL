@@ -18,12 +18,12 @@ namespace WindowsFormsApp1
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.Table_user = new System.Windows.Forms.DataGridView();
-            this.table_for_Product = new System.Windows.Forms.DataGridView();
+            this.Table_product = new System.Windows.Forms.DataGridView();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.navPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Table_user)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table_for_Product)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Table_product)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -44,7 +44,7 @@ namespace WindowsFormsApp1
             this.navPanel.Controls.Add(this.btnExit);
             this.navPanel.Location = new System.Drawing.Point(0, 50);
             this.navPanel.Name = "navPanel";
-            this.navPanel.Size = new System.Drawing.Size(1387, 68);
+            this.navPanel.Size = new System.Drawing.Size(1471, 68);
             this.navPanel.TabIndex = 1;
             // 
             // btnHome
@@ -64,7 +64,6 @@ namespace WindowsFormsApp1
             this.btnSettings.TabIndex = 2;
             this.btnSettings.Text = "Inventory";
             this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnExit
             // 
@@ -81,16 +80,18 @@ namespace WindowsFormsApp1
             this.Table_user.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Table_user.Location = new System.Drawing.Point(12, 185);
             this.Table_user.Name = "Table_user";
-            this.Table_user.Size = new System.Drawing.Size(614, 631);
+            this.Table_user.Size = new System.Drawing.Size(651, 631);
             this.Table_user.TabIndex = 2;
+            this.Table_user.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Table_user_CellContentClick);
             // 
-            // table_for_Product
+            // Table_product
             // 
-            this.table_for_Product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table_for_Product.Location = new System.Drawing.Point(693, 185);
-            this.table_for_Product.Name = "table_for_Product";
-            this.table_for_Product.Size = new System.Drawing.Size(694, 631);
-            this.table_for_Product.TabIndex = 3;
+            this.Table_product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Table_product.Location = new System.Drawing.Point(693, 185);
+            this.Table_product.Name = "Table_product";
+            this.Table_product.Size = new System.Drawing.Size(764, 631);
+            this.Table_product.TabIndex = 3;
+            this.Table_product.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Table_product_CellContentClick);
             // 
             // btnAddUser
             // 
@@ -100,6 +101,7 @@ namespace WindowsFormsApp1
             this.btnAddUser.TabIndex = 4;
             this.btnAddUser.Text = "Add user";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // button1
             // 
@@ -109,15 +111,16 @@ namespace WindowsFormsApp1
             this.button1.TabIndex = 5;
             this.button1.Text = "Add Product";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1399, 828);
+            this.ClientSize = new System.Drawing.Size(1520, 828);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddUser);
-            this.Controls.Add(this.table_for_Product);
+            this.Controls.Add(this.Table_product);
             this.Controls.Add(this.Table_user);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.navPanel);
@@ -126,7 +129,7 @@ namespace WindowsFormsApp1
             this.Load += new System.EventHandler(this.home_Load);
             this.navPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Table_user)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table_for_Product)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Table_product)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -137,7 +140,7 @@ namespace WindowsFormsApp1
         }
 
         private System.Windows.Forms.DataGridView Table_user;
-        private System.Windows.Forms.DataGridView table_for_Product;
+        private System.Windows.Forms.DataGridView Table_product;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.Button button1;
     }

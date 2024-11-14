@@ -23,6 +23,13 @@ namespace WindowsFormsApp1
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
+            // Check if the username or password is empty
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Please enter both username and password.");
+                return;
+            }
+
             // Connection string for MySQL database
             string connString = "Server=localhost;Database=engel_deleon;Uid=root;Pwd=;";
 
@@ -53,6 +60,12 @@ namespace WindowsFormsApp1
                     {
                         MessageBox.Show("Invalid username or password. Please try again.");
                     }
+
+                    reader.Close(); // Close the data reader explicitly
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message);
                 }
                 catch (Exception ex)
                 {
