@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,14 +45,25 @@
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.txtUsername);
+            this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Location = new System.Drawing.Point(150, 39);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(501, 372);
             this.panel1.TabIndex = 7;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(231, 290);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(32, 13);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Back";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
             // 
@@ -73,14 +84,15 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.Location = new System.Drawing.Point(189, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 40);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLogin.Location = new System.Drawing.Point(189, 237);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(111, 40);
+            this.btnLogin.TabIndex = 0;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label1
             // 
@@ -91,31 +103,20 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Username";
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(154, 148);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(226, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtUsername.Location = new System.Drawing.Point(154, 148);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(226, 20);
+            this.txtUsername.TabIndex = 1;
             // 
-            // textBox2
+            // txtPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(154, 191);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(226, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.UseSystemPasswordChar = true;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(231, 290);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(32, 13);
-            this.linkLabel1.TabIndex = 8;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Back";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.txtPassword.Location = new System.Drawing.Point(154, 191);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(226, 20);
+            this.txtPassword.TabIndex = 2;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // user_login
             // 
@@ -136,10 +137,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

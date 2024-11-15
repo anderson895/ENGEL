@@ -7,7 +7,6 @@ namespace WindowsFormsApp1
 {
     public partial class home : Form
     {
-        // Connection string to your MySQL database
         string connectionString = "Server=127.0.0.1;Database=engel_deleon;Uid=root;Pwd=;";
 
         public home()
@@ -17,12 +16,10 @@ namespace WindowsFormsApp1
 
         private void home_Load(object sender, EventArgs e)
         {
-            // Load user and product data when the form loads
             LoadUserData();
             LoadProductData();
         }
 
-        // Load user data from the database and populate the DataGridView
         private void LoadUserData()
         {
             try
@@ -37,7 +34,7 @@ namespace WindowsFormsApp1
 
                     Table_user.DataSource = dataTable;
                     CustomizeUserTableHeaders();
-                    AddEditButtonToUserTable();
+                    AddEditAndDeleteButtonToUserTable();
                 }
             }
             catch (Exception ex)
@@ -46,7 +43,6 @@ namespace WindowsFormsApp1
             }
         }
 
-        // Customize headers for user table
         private void CustomizeUserTableHeaders()
         {
             Table_user.Columns["user_id"].HeaderText = "User ID";
@@ -57,9 +53,8 @@ namespace WindowsFormsApp1
         }
 
         // Add "Edit" button column to the user table
-        private void AddEditButtonToUserTable()
+        private void AddEditAndDeleteButtonToUserTable()
         {
-            // Check if the 'Edit' button column already exists
             if (Table_user.Columns["btnEdit"] == null)
             {
                 DataGridViewButtonColumn btnEditColumn = new DataGridViewButtonColumn
@@ -71,10 +66,21 @@ namespace WindowsFormsApp1
                 Table_user.Columns.Add(btnEditColumn);
                 Table_user.Columns["btnEdit"].DisplayIndex = Table_user.Columns.Count - 1;
             }
+
+            if (Table_user.Columns["btnDelete"] == null)
+            {
+                DataGridViewButtonColumn btnDeleteColumn = new DataGridViewButtonColumn
+                {
+                    Name = "btnDelete",
+                    Text = "Delete",
+                    UseColumnTextForButtonValue = true
+                };
+                Table_user.Columns.Add(btnDeleteColumn);
+                Table_user.Columns["btnDelete"].DisplayIndex = Table_user.Columns.Count - 1;
+            }
         }
 
 
-        // Load product data from the database and populate the DataGridView
         private void LoadProductData()
         {
             try
@@ -89,7 +95,7 @@ namespace WindowsFormsApp1
 
                     Table_product.DataSource = dataTable;
                     CustomizeProductTableHeaders();
-                    AddEditButtonToProductTable();
+                    AddEditAndDeleteButtonToProductTable();
                 }
             }
             catch (Exception ex)
@@ -109,9 +115,8 @@ namespace WindowsFormsApp1
         }
 
         // Add "Edit" button column to the product table
-        private void AddEditButtonToProductTable()
+        private void AddEditAndDeleteButtonToProductTable()
         {
-            // Check if the 'Edit' button column already exists
             if (Table_product.Columns["btnEdit"] == null)
             {
                 DataGridViewButtonColumn btnEditColumn = new DataGridViewButtonColumn
@@ -123,7 +128,20 @@ namespace WindowsFormsApp1
                 Table_product.Columns.Add(btnEditColumn);
                 Table_product.Columns["btnEdit"].DisplayIndex = Table_product.Columns.Count - 1;
             }
+
+            if (Table_product.Columns["btnDelete"] == null)
+            {
+                DataGridViewButtonColumn btnDeleteColumn = new DataGridViewButtonColumn
+                {
+                    Name = "btnDelete",
+                    Text = "Delete",
+                    UseColumnTextForButtonValue = true
+                };
+                Table_product.Columns.Add(btnDeleteColumn);
+                Table_product.Columns["btnDelete"].DisplayIndex = Table_product.Columns.Count - 1;
+            }
         }
+
 
 
         // Handle "Edit" button click inside the user table
@@ -154,9 +172,42 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Please select a user to edit.");
                 }
             }
+            else if (e.ColumnIndex == Table_user.Columns["btnDelete"].Index)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow selectedRow = Table_user.Rows[e.RowIndex];
+                    int userId = Convert.ToInt32(selectedRow.Cells["user_id"].Value);
+
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this user?", "Delete User", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        DeleteUser(userId);
+                    }
+                }
+            }
         }
 
-
+        private void DeleteUser(int userId)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "DELETE FROM users WHERE user_id = @userId";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("User deleted successfully.");
+                    LoadUserData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting user: " + ex.Message);
+            }
+        }
 
         // Handle "Edit" button click inside the product table
         private void Table_product_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -186,26 +237,58 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Please select a product to edit.");
                 }
             }
+            else if (e.ColumnIndex == Table_product.Columns["btnDelete"].Index)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow selectedRow = Table_product.Rows[e.RowIndex];
+                    int productId = Convert.ToInt32(selectedRow.Cells["prod_id"].Value);
+
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this product?", "Delete Product", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        DeleteProduct(productId);
+                    }
+                }
+            }
+          }
+
+
+        private void DeleteProduct(int productId)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "DELETE FROM product WHERE prod_id = @productId";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@productId", productId);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Product deleted successfully.");
+                    LoadProductData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting product: " + ex.Message);
+            }
         }
 
 
-        // Optional: Add a user to the database
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             AddUserForm addUserForm = new AddUserForm();
             addUserForm.ShowDialog();
 
-            // Reload user data after adding a new user
             LoadUserData();
         }
 
-        // Optional: Add a product to the database
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             AddProductForm addProductForm = new AddProductForm();
             addProductForm.ShowDialog();
 
-            // Reload product data after adding a new product
             LoadProductData();
         }
     }

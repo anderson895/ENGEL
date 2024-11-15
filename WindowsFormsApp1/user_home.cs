@@ -8,11 +8,62 @@ namespace WindowsFormsApp1
 {
     public partial class user_home : Form
     {
-        public user_home()
+        private int userId;
+
+        // Constructor with user_id as a parameter
+        private Timer refreshTimer;
+
+        public user_home(int userId)
         {
             InitializeComponent();
+            this.userId = userId;
+
+            // Initialize and start the timer
+            refreshTimer = new Timer();
+            refreshTimer.Interval = 2000; // 5000 milliseconds = 5 seconds
+            refreshTimer.Tick += RefreshCart;
+            refreshTimer.Start();
+
+            // Call method to load the user's full name
+            LoadUserFullName();
             LoadProductsToCart();
         }
+        private void RefreshCart(object sender, EventArgs e)
+        {
+            // Clear the existing controls in the FlowLayoutPanel
+            flowLayoutPanel1.Controls.Clear();
+
+            // Load the products again to reflect any changes
+            LoadProductsToCart();
+        }
+
+
+        private void LoadUserFullName()
+        {
+            try
+            {
+                using (var conn = new MySqlConnection("Server=localhost;Database=engel_deleon;Uid=root;Pwd=;"))
+                {
+                    conn.Open();
+                    var query = "SELECT user_fullname FROM users WHERE user_id=@userId";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                            user_fullname.Text = result.ToString();
+                        else
+                            MessageBox.Show("User not found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
 
         // Load products and add them to the cart
         private void LoadProductsToCart()
@@ -28,8 +79,6 @@ namespace WindowsFormsApp1
                     BackColor = Color.White,
                     Margin = new Padding(10)
                 };
-
-                
 
                 // Product Name
                 Label prodName = new Label
@@ -78,7 +127,7 @@ namespace WindowsFormsApp1
 
                 btnPurchase.Click += (sender, args) =>
                 {
-                    // Create and display a custom input dialog
+                    // Create and display a custom input dialog for quantity
                     using (Form inputDialog = new Form())
                     {
                         inputDialog.Width = 300;
@@ -134,11 +183,12 @@ namespace WindowsFormsApp1
                                     if (result == DialogResult.Yes)
                                     {
                                         // Deduct stock and update database
-                                        UpdateProductStock(product.ProdId, product.ProdStock - quantity);
+                                        int newStock = product.ProdStock - quantity;
+                                        UpdateProductStock(product.ProdId, newStock);
 
                                         // Update label dynamically
-                                        product.ProdStock -= quantity;
-                                        prodStock.Text = $"Stock: {product.ProdStock}";
+                                        product.ProdStock = newStock;
+                                        prodStock.Text = $"Stock: {product.ProdStock}";  // Update stock label in real time
 
                                         MessageBox.Show("Purchase successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
@@ -156,8 +206,6 @@ namespace WindowsFormsApp1
                     }
                 };
 
-
-
                 productPanel.Controls.Add(prodName);
                 productPanel.Controls.Add(prodDescription);
                 productPanel.Controls.Add(prodPrice);
@@ -167,8 +215,9 @@ namespace WindowsFormsApp1
                 // Add panel to the FlowLayoutPanel
                 flowLayoutPanel1.Controls.Add(productPanel);
             }
-
         }
+
+
 
 
         private void UpdateProductStock(int productId, int newStock)
@@ -220,5 +269,112 @@ namespace WindowsFormsApp1
 
             return products;
         }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            Form editForm = new Form();
+            editForm.Text = "Edit User Details";
+            editForm.Size = new Size(300, 250); 
+
+            string fullName = string.Empty;
+            string username = string.Empty;
+            string currentPassword = string.Empty;
+
+
+            using (var conn = new MySqlConnection("Server=localhost;Database=engel_deleon;Uid=root;Pwd=;"))
+            {
+                conn.Open();
+                var query = "SELECT user_fullname, user_username, user_password FROM users WHERE user_id=@userId"; // Select fullname, username, and password
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            fullName = reader.GetString("user_fullname");
+                            username = reader.GetString("user_username");
+                            currentPassword = reader.GetString("user_password"); // Store current password
+                        }
+                        else
+                        {
+                            MessageBox.Show("User not found.");
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // Create controls to edit user details
+            Label lblFullName = new Label { Text = "Full Name:", Location = new Point(10, 20), AutoSize = true };
+            TextBox txtFullName = new TextBox { Text = fullName, Location = new Point(100, 20), Width = 150 };
+
+            Label lblUsername = new Label { Text = "Username:", Location = new Point(10, 60), AutoSize = true };
+            TextBox txtUsername = new TextBox { Text = username, Location = new Point(100, 60), Width = 150 };
+
+            Label lblPassword = new Label { Text = "New Password:", Location = new Point(10, 100), AutoSize = true };
+            TextBox txtPassword = new TextBox { Location = new Point(100, 100), Width = 150, PasswordChar = '*' };
+
+            Button btnSave = new Button { Text = "Save", Location = new Point(100, 140) };
+
+            btnSave.Click += (s, args) =>
+            {
+                // Validate input
+                if (string.IsNullOrEmpty(txtFullName.Text) || string.IsNullOrEmpty(txtUsername.Text))
+                {
+                    MessageBox.Show("Please fill in all fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Determine if password needs to be updated
+                string newPassword = string.IsNullOrEmpty(txtPassword.Text) ? currentPassword : txtPassword.Text; // Use current password if no new password is provided
+
+                // Update user details in the database
+                using (var conn = new MySqlConnection("Server=localhost;Database=engel_deleon;Uid=root;Pwd=;"))
+                {
+                    conn.Open();
+                    string updateQuery = "UPDATE users SET user_fullname = @FullName, user_username = @Username, user_password = @Password WHERE user_id = @UserId";
+                    using (var cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
+                        cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                        cmd.Parameters.AddWithValue("@Password", newPassword); // Save the new password (or current password if none entered)
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Your details have been updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                editForm.Close(); // Close the edit form after saving
+            };
+
+            // Add controls to the edit form
+            editForm.Controls.Add(lblFullName);
+            editForm.Controls.Add(txtFullName);
+            editForm.Controls.Add(lblUsername);
+            editForm.Controls.Add(txtUsername);
+            editForm.Controls.Add(lblPassword);
+            editForm.Controls.Add(txtPassword);
+            editForm.Controls.Add(btnSave);
+
+            // Show the edit form
+            editForm.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+           
+
+            // Optionally, show a confirmation message
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                user_login loginForm = new user_login();
+                loginForm.Show();
+            }
+        }
+
     }
 }
