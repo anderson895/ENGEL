@@ -89,7 +89,7 @@ namespace WindowsFormsApp1
             this.Table_product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Table_product.Location = new System.Drawing.Point(693, 185);
             this.Table_product.Name = "Table_product";
-            this.Table_product.Size = new System.Drawing.Size(764, 631);
+            this.Table_product.Size = new System.Drawing.Size(623, 631);
             this.Table_product.TabIndex = 3;
             this.Table_product.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Table_product_CellContentClick);
             // 
@@ -117,7 +117,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1520, 828);
+            this.ClientSize = new System.Drawing.Size(1332, 828);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.Table_product);
@@ -136,7 +136,9 @@ namespace WindowsFormsApp1
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            var landingform = new landingForm();
+            this.Hide();
+            landingform.Show();
         }
 
         private System.Windows.Forms.DataGridView Table_user;

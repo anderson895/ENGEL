@@ -59,15 +59,20 @@ namespace WindowsFormsApp1
         // Add "Edit" button column to the user table
         private void AddEditButtonToUserTable()
         {
-            DataGridViewButtonColumn btnEditColumn = new DataGridViewButtonColumn
+            // Check if the 'Edit' button column already exists
+            if (Table_user.Columns["btnEdit"] == null)
             {
-                Name = "btnEdit",
-                Text = "Edit",
-                UseColumnTextForButtonValue = true
-            };
-            Table_user.Columns.Add(btnEditColumn);
-            Table_user.Columns["btnEdit"].DisplayIndex = Table_user.Columns.Count - 1;
+                DataGridViewButtonColumn btnEditColumn = new DataGridViewButtonColumn
+                {
+                    Name = "btnEdit",
+                    Text = "Edit",
+                    UseColumnTextForButtonValue = true
+                };
+                Table_user.Columns.Add(btnEditColumn);
+                Table_user.Columns["btnEdit"].DisplayIndex = Table_user.Columns.Count - 1;
+            }
         }
+
 
         // Load product data from the database and populate the DataGridView
         private void LoadProductData()
@@ -106,38 +111,52 @@ namespace WindowsFormsApp1
         // Add "Edit" button column to the product table
         private void AddEditButtonToProductTable()
         {
-            DataGridViewButtonColumn btnEditColumn = new DataGridViewButtonColumn
+            // Check if the 'Edit' button column already exists
+            if (Table_product.Columns["btnEdit"] == null)
             {
-                Name = "btnEdit",
-                Text = "Edit",
-                UseColumnTextForButtonValue = true
-            };
-            Table_product.Columns.Add(btnEditColumn);
-            Table_product.Columns["btnEdit"].DisplayIndex = Table_product.Columns.Count - 1;
+                DataGridViewButtonColumn btnEditColumn = new DataGridViewButtonColumn
+                {
+                    Name = "btnEdit",
+                    Text = "Edit",
+                    UseColumnTextForButtonValue = true
+                };
+                Table_product.Columns.Add(btnEditColumn);
+                Table_product.Columns["btnEdit"].DisplayIndex = Table_product.Columns.Count - 1;
+            }
         }
+
 
         // Handle "Edit" button click inside the user table
         private void Table_user_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == Table_user.Columns["btnEdit"].Index && Table_user.SelectedRows.Count > 0)
+            // Ensure the click is on the Edit button column
+            if (e.ColumnIndex == Table_user.Columns["btnEdit"].Index)
             {
-                DataGridViewRow selectedRow = Table_user.SelectedRows[0];
-                int userId = Convert.ToInt32(selectedRow.Cells["user_id"].Value);
-                string userFullname = selectedRow.Cells["user_fullname"].Value.ToString();
-                string userUsername = selectedRow.Cells["user_username"].Value.ToString();
-                string userPassword = selectedRow.Cells["user_password"].Value.ToString();
+                // Ensure that the clicked row is valid and not -1 (which means no row was selected)
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow selectedRow = Table_user.Rows[e.RowIndex]; // Get the clicked row
+                    int userId = Convert.ToInt32(selectedRow.Cells["user_id"].Value);
+                    string userFullname = selectedRow.Cells["user_fullname"].Value.ToString();
+                    string userUsername = selectedRow.Cells["user_username"].Value.ToString();
+                    string userPassword = selectedRow.Cells["user_password"].Value.ToString();
 
-                EditUserForm editForm = new EditUserForm(userId, userFullname, userUsername, userPassword);
-                editForm.ShowDialog();
+                    // Open the EditUserForm with the selected user's details
+                    EditUserForm editForm = new EditUserForm(userId, userFullname, userUsername, userPassword);
+                    editForm.ShowDialog();
 
-                // Reload user data after editing
-                LoadUserData();
-            }
-            else
-            {
-                MessageBox.Show("Please select a user to edit.");
+                    // Reload user data after editing
+                    LoadUserData();
+                }
+                else
+                {
+                    // If no row is selected, show an appropriate message
+                    MessageBox.Show("Please select a user to edit.");
+                }
             }
         }
+
+
 
         // Handle "Edit" button click inside the product table
         private void Table_product_CellContentClick(object sender, DataGridViewCellEventArgs e)

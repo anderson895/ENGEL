@@ -31,11 +31,11 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtProductPrice = new System.Windows.Forms.TextBox();
             this.txtProductQuantity = new System.Windows.Forms.TextBox();
-            this.txtProductDescription = new System.Windows.Forms.TextBox(); // New TextBox for Description
+            this.txtProductDescription = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblProductPrice = new System.Windows.Forms.Label();
             this.lblProductQuantity = new System.Windows.Forms.Label();
-            this.lblProductDescription = new System.Windows.Forms.Label(); // New Label for Description
+            this.lblProductDescription = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -64,10 +64,10 @@
             // txtProductDescription
             // 
             this.txtProductDescription.Location = new System.Drawing.Point(150, 200);
+            this.txtProductDescription.Multiline = true;
             this.txtProductDescription.Name = "txtProductDescription";
             this.txtProductDescription.Size = new System.Drawing.Size(200, 60);
             this.txtProductDescription.TabIndex = 3;
-            this.txtProductDescription.Multiline = true; // Makes it a multi-line text box for description
             // 
             // lblProductName
             // 
@@ -99,9 +99,9 @@
             // lblProductDescription
             // 
             this.lblProductDescription.AutoSize = true;
-            this.lblProductDescription.Location = new System.Drawing.Point(50, 203);
+            this.lblProductDescription.Location = new System.Drawing.Point(36, 203);
             this.lblProductDescription.Name = "lblProductDescription";
-            this.lblProductDescription.Size = new System.Drawing.Size(105, 13);
+            this.lblProductDescription.Size = new System.Drawing.Size(103, 13);
             this.lblProductDescription.TabIndex = 6;
             this.lblProductDescription.Text = "Product Description:";
             // 
@@ -142,6 +142,7 @@
             this.Text = "Add New Product";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

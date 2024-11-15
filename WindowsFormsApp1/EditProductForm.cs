@@ -51,7 +51,7 @@ namespace WindowsFormsApp1
                 {
                     conn.Open();
 
-                    string query = "UPDATE product SET prod_name = @name, prod_price = @price, prod_quantity = @quantity, prod_description = @description WHERE prod_id = @id";
+                    string query = "UPDATE product SET prod_name = @name, prod_price = @price, prod_stock = @quantity, prod_description = @description WHERE prod_id = @id";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@id", ProductId);
                     cmd.Parameters.AddWithValue("@name", txtProductName.Text);

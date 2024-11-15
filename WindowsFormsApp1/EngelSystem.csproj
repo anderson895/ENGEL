@@ -140,8 +140,15 @@
     <Compile Include="landingForm.Designer.cs">
       <DependentUpon>landingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="user_home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user_home.Designer.cs">
+      <DependentUpon>user_home.cs</DependentUpon>
+    </Compile>
     <Compile Include="user_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +179,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="user_home.resx">
+      <DependentUpon>user_home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="user_login.resx">
       <DependentUpon>user_login.cs</DependentUpon>
     </EmbeddedResource>
