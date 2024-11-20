@@ -63,7 +63,8 @@ namespace WindowsFormsApp1
                 {
                     Name = "btnEdit",
                     Text = "Edit",
-                    UseColumnTextForButtonValue = true
+                    UseColumnTextForButtonValue = true,
+                    HeaderText = "Action" // Set header text for the Edit column
                 };
                 Table_user.Columns.Add(btnEditColumn);
                 Table_user.Columns["btnEdit"].DisplayIndex = Table_user.Columns.Count - 1;
@@ -75,12 +76,14 @@ namespace WindowsFormsApp1
                 {
                     Name = "btnDelete",
                     Text = "Delete",
-                    UseColumnTextForButtonValue = true
+                    UseColumnTextForButtonValue = true,
+                    HeaderText = "Action" // Set header text for the Delete column
                 };
                 Table_user.Columns.Add(btnDeleteColumn);
                 Table_user.Columns["btnDelete"].DisplayIndex = Table_user.Columns.Count - 1;
             }
         }
+
 
 
         private void LoadProductData()
@@ -125,7 +128,8 @@ namespace WindowsFormsApp1
                 {
                     Name = "btnEdit",
                     Text = "Edit",
-                    UseColumnTextForButtonValue = true
+                    UseColumnTextForButtonValue = true,
+                    HeaderText = "Action" // Set header text for the Edit column
                 };
                 Table_product.Columns.Add(btnEditColumn);
                 Table_product.Columns["btnEdit"].DisplayIndex = Table_product.Columns.Count - 1;
@@ -137,12 +141,14 @@ namespace WindowsFormsApp1
                 {
                     Name = "btnDelete",
                     Text = "Delete",
-                    UseColumnTextForButtonValue = true
+                    UseColumnTextForButtonValue = true,
+                    HeaderText = "Action" // Set header text for the Delete column
                 };
                 Table_product.Columns.Add(btnDeleteColumn);
                 Table_product.Columns["btnDelete"].DisplayIndex = Table_product.Columns.Count - 1;
             }
         }
+
 
 
 
