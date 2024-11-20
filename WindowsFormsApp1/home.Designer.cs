@@ -29,11 +29,11 @@ namespace WindowsFormsApp1
             // lblHeader
             // 
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblHeader.Location = new System.Drawing.Point(-6, -3);
+            this.lblHeader.Location = new System.Drawing.Point(-417, -15);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(1530, 62);
             this.lblHeader.TabIndex = 0;
-            this.lblHeader.Text = "Manager User";
+            this.lblHeader.Text = "Home";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // navPanel
@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(552, 26);
+            this.btnHome.Location = new System.Drawing.Point(60, 12);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(147, 30);
             this.btnHome.TabIndex = 0;
@@ -58,7 +58,7 @@ namespace WindowsFormsApp1
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(720, 26);
+            this.btnSettings.Location = new System.Drawing.Point(271, 12);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(131, 30);
             this.btnSettings.TabIndex = 2;
@@ -67,7 +67,7 @@ namespace WindowsFormsApp1
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(878, 26);
+            this.btnExit.Location = new System.Drawing.Point(530, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(98, 30);
             this.btnExit.TabIndex = 3;
@@ -80,16 +80,16 @@ namespace WindowsFormsApp1
             this.Table_user.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Table_user.Location = new System.Drawing.Point(12, 185);
             this.Table_user.Name = "Table_user";
-            this.Table_user.Size = new System.Drawing.Size(754, 631);
+            this.Table_user.Size = new System.Drawing.Size(754, 283);
             this.Table_user.TabIndex = 2;
             this.Table_user.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Table_user_CellContentClick);
             // 
             // Table_product
             // 
             this.Table_product.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Table_product.Location = new System.Drawing.Point(772, 185);
+            this.Table_product.Location = new System.Drawing.Point(12, 513);
             this.Table_product.Name = "Table_product";
-            this.Table_product.Size = new System.Drawing.Size(752, 631);
+            this.Table_product.Size = new System.Drawing.Size(752, 321);
             this.Table_product.TabIndex = 3;
             this.Table_product.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Table_product_CellContentClick);
             // 
@@ -105,7 +105,7 @@ namespace WindowsFormsApp1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(772, 156);
+            this.button1.Location = new System.Drawing.Point(12, 474);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 23);
             this.button1.TabIndex = 5;
@@ -117,7 +117,7 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1545, 828);
+            this.ClientSize = new System.Drawing.Size(797, 828);
             this.Controls.Add(this.navPanel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddUser);
