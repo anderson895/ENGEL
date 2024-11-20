@@ -6,16 +6,12 @@ namespace WindowsFormsApp1
     {
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Panel navPanel;
-        private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnExit;
 
         private void InitializeComponent()
         {
             this.lblHeader = new System.Windows.Forms.Label();
             this.navPanel = new System.Windows.Forms.Panel();
-            this.btnHome = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.Table_user = new System.Windows.Forms.DataGridView();
             this.Table_product = new System.Windows.Forms.DataGridView();
@@ -28,46 +24,29 @@ namespace WindowsFormsApp1
             // 
             // lblHeader
             // 
+            this.lblHeader.BackColor = System.Drawing.Color.White;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblHeader.Location = new System.Drawing.Point(-417, -15);
+            this.lblHeader.Location = new System.Drawing.Point(70, 26);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(1530, 62);
+            this.lblHeader.Size = new System.Drawing.Size(467, 62);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Home";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHeader.Click += new System.EventHandler(this.lblHeader_Click);
             // 
             // navPanel
             // 
             this.navPanel.BackColor = System.Drawing.Color.LightGray;
-            this.navPanel.Controls.Add(this.btnHome);
-            this.navPanel.Controls.Add(this.btnSettings);
             this.navPanel.Controls.Add(this.btnExit);
-            this.navPanel.Location = new System.Drawing.Point(0, 50);
+            this.navPanel.Controls.Add(this.lblHeader);
+            this.navPanel.Location = new System.Drawing.Point(0, 31);
             this.navPanel.Name = "navPanel";
-            this.navPanel.Size = new System.Drawing.Size(1524, 68);
+            this.navPanel.Size = new System.Drawing.Size(1524, 105);
             this.navPanel.TabIndex = 1;
-            // 
-            // btnHome
-            // 
-            this.btnHome.Location = new System.Drawing.Point(60, 12);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(147, 30);
-            this.btnHome.TabIndex = 0;
-            this.btnHome.Text = "Manage User";
-            this.btnHome.UseVisualStyleBackColor = true;
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.Location = new System.Drawing.Point(271, 12);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(131, 30);
-            this.btnSettings.TabIndex = 2;
-            this.btnSettings.Text = "Inventory";
-            this.btnSettings.UseVisualStyleBackColor = true;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(530, 12);
+            this.btnExit.Location = new System.Drawing.Point(668, 58);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(98, 30);
             this.btnExit.TabIndex = 3;
@@ -117,13 +96,12 @@ namespace WindowsFormsApp1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 828);
+            this.ClientSize = new System.Drawing.Size(783, 828);
             this.Controls.Add(this.navPanel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.Table_product);
             this.Controls.Add(this.Table_user);
-            this.Controls.Add(this.lblHeader);
             this.Name = "home";
             this.Text = "Home";
             this.Load += new System.EventHandler(this.home_Load);

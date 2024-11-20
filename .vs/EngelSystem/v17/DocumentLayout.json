@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|c:\\users\\padilla\\downloads\\trash\\engel_deleon\\windowsformsapp1\\windowsformsapp1\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|solutionrelative:windowsformsapp1\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\windowsformsapp1\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|solutionrelative:windowsformsapp1\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\windowsformsapp1\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|solutionrelative:windowsformsapp1\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|c:\\users\\padilla\\downloads\\trash\\engel_deleon\\windowsformsapp1\\windowsformsapp1\\edituserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\windowsformsapp1\\edituserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{521F0C3B-F7FA-4A7E-A592-9E6FD2B0A1BA}|WindowsFormsApp1\\EngelSystem.csproj|solutionrelative:windowsformsapp1\\edituserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -78,7 +78,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
@@ -118,13 +118,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "home.cs",
               "DocumentMoniker": "C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\WindowsFormsApp1\\home.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp1\\home.cs",
               "ToolTip": "C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\WindowsFormsApp1\\home.cs",
               "RelativeToolTip": "WindowsFormsApp1\\home.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAABsBAAAAAAAAAAAUwCQBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T12:57:10.375Z",
               "EditorCaption": ""
@@ -139,8 +139,7 @@
               "RelativeToolTip": "WindowsFormsApp1\\EditUserForm.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAQwBMAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T15:24:02.586Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-14T15:24:02.586Z"
             },
             {
               "$type": "Document",
@@ -225,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "home.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Padilla\\Downloads\\trash\\ENGEL_DELEON\\WindowsFormsApp1\\WindowsFormsApp1\\home.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp1\\home.cs",
@@ -245,8 +244,7 @@
               "RelativeToolTip": "WindowsFormsApp1\\home.Designer.cs",
               "ViewState": "AgIAAE8AAAAAAAAAAAAjwF4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T13:01:55.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T13:01:55.874Z"
             },
             {
               "$type": "Document",
