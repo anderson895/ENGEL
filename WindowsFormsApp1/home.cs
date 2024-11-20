@@ -16,6 +16,8 @@ namespace WindowsFormsApp1
 
         private void home_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+
             LoadUserData();
             LoadProductData();
         }
